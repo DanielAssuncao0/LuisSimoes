@@ -21,9 +21,10 @@ class Router
         };
     }
 
+    //TODO Needs some improvements
     public function getPath():string 
     {
-        return $_SERVER['PHP_SELF'];
+        return $_SERVER['REQUEST_URI'];
     }
 
     public function hasRoute(string $path) : bool

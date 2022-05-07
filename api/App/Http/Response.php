@@ -9,7 +9,7 @@ class Response
         $data = [
             'data' => $data,
             'message' => $message,
-            'statust' => $status
+            'status' => $status
         ];
 
         return json_encode($data);

@@ -20,6 +20,6 @@ class Controller
     //Reconstruct database tables
     public function restore()
     {
-        return Response::json('Success', 200, ['Test' => 'test1']);
+        
     }
 }
