@@ -21,6 +21,7 @@ class Router
         };
     }
 
+    //NOTE needs improvement
     public function getPath():string 
     {
         return $_SERVER['PATH_INFO'];
