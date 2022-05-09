@@ -1,7 +1,10 @@
 $(document).ready(() => {
+    const pathname = $(location).attr("pathname");
+    const search = $(location).attr("search");
     $.ajax({
-        url: 'http://localhost:9999/summary'
+        url: 'http://localhost:9999/details' + search
     }).done((response) => {
+        console.log(response);
         response = JSON.parse(response);
         if(response.data === null || response.data.length === 0)
             return;
@@ -9,13 +12,7 @@ $(document).ready(() => {
         let columns = [];
         const headers = Object.keys(response.data[0]);
         headers.forEach(header => {
-            let data = header;
-            if(header === 'ARTICULO')
-                data = (data) => {
-                    const value = data[header];
-                    return '<a href="details.php?id=' + value + '">' + value + '</a>'
-                }
-            columns.push({title: header, data: data});
+            columns.push({title: header, data: header});
         });
 
         $('#datatables').dataTable( {

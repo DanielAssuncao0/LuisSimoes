@@ -1,5 +1,7 @@
 <?php
 
+namespace App\JWT;
+
 class JWT {
     /**
      * @param string $token
@@ -7,7 +9,7 @@ class JWT {
      */
     public static function authenticated(string $token) : bool
     {
-        //Assume this token is authenticated
+        //Assuming this token is authenticated
         return true;
     }
 }

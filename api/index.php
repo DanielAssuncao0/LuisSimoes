@@ -1,13 +1,19 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+
 include 'Autoload.php';
-include 'App/Route/Router.php';
+
+use App\JWT\JWT;
+use App\Http\Response;
 use App\Route\Router;
 
 $params = $_POST;
 // $token = $_POST['token'];
 
-// if(!JWT::authenticated($token))
-//     return Response::json("User not authenticated");
+// Like middleware
+$token = '40uifdnaifj19f0aj0a';
+if(!JWT::authenticated($token))
+    return Response::json("User not authenticated");
 
 Router::execute();

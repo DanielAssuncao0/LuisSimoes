@@ -21,10 +21,35 @@ class Router
         };
     }
 
-    //TODO Needs some improvements
     public function getPath():string 
     {
-        return $_SERVER['REQUEST_URI'];
+        return $_SERVER['PATH_INFO'];
+    }
+
+    public function getParams(string $name, $default = null)
+    {
+        $queryString = $_SERVER['QUERY_STRING'];
+        if(!empty($queryString))
+        {
+            $queryString = explode('&', $queryString);
+            if(count($queryString) > 0)
+            {
+                $params = [];
+                foreach ($queryString as $string) 
+                {
+                    $extract = explode('=', $string);
+                    $key = $extract[0];
+                    $value = $extract[1];
+
+                    if($key === $name)
+                        return $value ?? $default;
+
+                    $params[$key] = $value;
+                }
+            }
+        }
+
+        return $params;
     }
 
     public function hasRoute(string $path) : bool
@@ -62,6 +87,11 @@ class Router
     public static function init()
     {
         self::$_instance = new Router;
+    }
+
+    public static function params(string $name, $default = null)
+    {
+        return self::instance()->getParams($name, $default);
     }
 }
 
