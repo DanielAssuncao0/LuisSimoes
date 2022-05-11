@@ -32,8 +32,6 @@ class Connection
 		while($row = mysqli_fetch_array($this->result, MYSQLI_ASSOC))
             $data[] = $row;
 		
-        return $data;
-
         $this->disconnect();
 
         return $data;
